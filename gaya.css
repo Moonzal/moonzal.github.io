@@ -1,0 +1,209 @@
+* {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --dgray: rgb(201, 201, 201);
+  --gray: #ddd;
+  --bg: #fff;
+  --g1: #0431c0;
+  --g2: #011f77;
+  --g3: #b6b6b6;
+  --g4: #8d8d8d;
+  --huruf: #fff;
+  --lebar: 80vmin;
+  --letter: 3.5vmin;
+  --tinggi-gambar: 50vmin;
+  --tinggi-jadwal: 30vmin;
+  --tulisan-gambar-left: 2vmin;
+  --tulisan-gambar-top: 2vmin;
+}
+@media (min-width: 325px) {
+  :root {
+    --lebar: 70vmin;
+    --letter: 2.5vmin;
+    --tinggi-gambar: 44vmin;
+    --tinggi-jadwal: 25vmin;
+    --tulisan-gambar-left: 2vmin;
+    --tulisan-gambar-top: 2vmin;
+  }
+}
+@media (min-width: 385px) {
+  :root {
+    --lebar: 60vmin;
+    --letter: 2.5vmin;
+    --tinggi-gambar: 34vmin;
+    --tinggi-jadwal: 25vmin;
+    --tulisan-gambar-left: 0.5vmin;
+    --tulisan-gambar-top: 0.5vmin;
+  }
+}
+@media (min-width: 450px) {
+  :root {
+    --lebar: 55vmin;
+    --letter: 2.5vmin;
+    --tinggi-gambar: 34vmin;
+    --tinggi-jadwal: 25vmin;
+    --tulisan-gambar-left: 0.5vmin;
+    --tulisan-gambar-top: 0.5vmin;
+  }
+}
+@media (min-width: 600px) {
+  :root {
+    --lebar: 52vmin;
+    --letter: 2.5vmin;
+    --tinggi-gambar: 34vmin;
+    --tinggi-jadwal: 25vmin;
+    --tulisan-gambar-left: 0.5vmin;
+    --tulisan-gambar-top: 0.5vmin;
+  }
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: var(--letter);
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background: linear-gradient(130deg, var(--g1) 0% 33%, var(--g2) 66%);
+}
+.kartu {
+  aspect-ratio: 9/16;
+  width: var(--lebar);
+  position: relative;
+  background-color: var(--bg);
+  box-shadow: 0 5px 10px 0 rgb(0 0 0 / 10%);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.gambar {
+  display: grid;
+  place-items: center;
+  background-image: url("bg-j.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: var(--tinggi-gambar);
+  color: var(--huruf);
+  position: relative;
+}
+.tulisan-gambar {
+  position: absolute;
+  left: var(--tulisan-gambar-left);
+  top: var(--tulisan-gambar-top);
+}
+.wrapper-waktu {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  padding-inline: 4vmin;
+  width: 100%;
+  background-color: var(--gray);
+  text-align: center;
+  border-radius: 2vmin;
+}
+.konten-kartu {
+  padding: 2vmin;
+}
+#jadwal {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.322);
+  height: var(--tinggi-jadwal);
+  position: absolute;
+  grid-template-rows: 2fr 0.5fr 0.5fr;
+}
+#jadwal:not(:has(#MK)) {
+  grid-template-rows: 1fr;
+  font-size: 7vmin;
+  font-weight: 700;
+}
+#MK {
+  text-align: center;
+  font-weight: 700;
+  font-size: 3vmin;
+  padding-inline: 2vmin;
+}
+#dosen {
+  color: #000;
+  background-color: var(--dgray);
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+#teks-waktu {
+  color: #000;
+}
+#jadwal-next {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  background: var(--g3);
+  height: var(--tinggi-jadwal);
+  grid-template-rows: 2fr 0.5fr 0.5fr;
+  margin-bottom: 1.5vmin;
+  border-radius: 2vmin;
+}
+#jadwal-next:not(:has(#MK)) {
+  grid-template-rows: 1fr;
+  font-size: 7vmin;
+  font-weight: 700;
+}
+#MK-next {
+  color: var(--huruf);
+  text-align: center;
+  font-weight: 700;
+  font-size: 3vmin;
+  padding-inline: 2vmin;
+  background: linear-gradient(
+    130deg,
+    var(--g3) 4%,
+    var(--g4) 30%,
+    var(--g3) 96%
+  );
+}
+#dosen-next {
+  color: var(--huruf);
+  background-color: var(--dgray);
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+#ruang-next {
+  color: #fff;
+}
+.wrapper-tombol {
+  display: grid;
+  place-items: center;
+  height: 11vmin;
+  width: 100%;
+}
+a.tombol {
+  background-color: var(--g2);
+  padding: 1vmin 2vmin;
+  color: white;
+  text-decoration: none;
+  border-radius: 2vmin;
+  font-weight: 700;
+  cursor: pointer;
+}
+a.tombol:link {
+  text-decoration: none;
+}
+a.tombol:visited {
+  text-decoration: none;
+}
+a.tombol:hover {
+  text-decoration: none;
+  color: var(--g2);
+  border: var(--g2) solid 0.1vmin;
+  background-color: #fff;
+}
+a.tombol:active {
+  text-decoration: none;
+}
