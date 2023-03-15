@@ -146,6 +146,30 @@ const listMK = {
       dosen: "Dr. Kuliyatun, M.Pd.I",
       ruang: "Ruang 2.2",
     },
+    1: {
+      mulai: {
+        j: "11",
+        m: "40",
+      },
+      selesai: {
+        j: "13",
+        m: "30",
+      },
+      MK: "ISTIRAHAT",
+    },
+    2: {
+      mulai: {
+        j: "13",
+        m: "30",
+      },
+      selesai: {
+        j: "17",
+        m: "00",
+      },
+      MK: "Pemrograman Aplikasi",
+      dosen: "Sudarmaji, S.Kom., M.MKom.",
+      ruang: "Lab 3",
+    },
   },
   5: {
     0: {
@@ -161,19 +185,6 @@ const listMK = {
       dosen: "Mujito, S.Kom., M.Kom.",
       ruang: "Lab 3",
     },
-    1: {
-      mulai: {
-        j: "10",
-        m: "00",
-      },
-      selesai: {
-        j: "12",
-        m: "00",
-      },
-      MK: "Pemrograman Aplikasi",
-      dosen: "Sudarmaji, S.Kom., M.MKom.",
-      ruang: "Lab 3",
-    },
   },
 };
 let jam = 0;
@@ -181,7 +192,7 @@ let menit = 0;
 let detik = 0;
 function updateJadwal() {
   const d = new Date();
-  // const d = new Date(2023, 2, 14, 13, 0, 04, 0);
+  // const d = new Date(2023, 2, 16, 23, 30, 04, 0);
   let tahun = d.getFullYear();
   let bulan = bulans[d.getMonth()];
   let hari = haris[d.getDay()];
@@ -253,10 +264,7 @@ function updateJadwal() {
       adaMK(listMK[3][2]);
       hitungMundur(0, listMK[3][2].selesai.j - 1, 100);
       jadwalNextK.innerHTML = "Istirahat";
-    } else if (
-      listMK[3][2].selesai.j == jam &&
-      menit < listMK[3][2].selesai.m
-    ) {
+    } else if (listMK[3][2].selesai.j == jam && menit < listMK[3][2].selesai.m) {
       adaMK(listMK[3][2]);
       hitungMundur(0, listMK[3][2].selesai.j, listMK[3][2].selesai.m);
       jadwalNextK.innerHTML = "Istirahat";
@@ -281,17 +289,34 @@ function updateJadwal() {
     } else if (listMK[4][0].mulai.j == jam && menit < listMK[4][0].selesai.m) {
       adaMK(listMK[4][0]);
       hitungMundur(0, listMK[4][0].selesai.j, listMK[4][0].selesai.m);
-      jadwalNextK.innerHTML = "Pulang";
+      jadwalNextK.innerHTML = "Istirahat";
     } else if (listMK[4][0].mulai.j == jam && menit >= listMK[4][0].selesai.m) {
       adaMK(listMK[4][0]);
       hitungMundur(0, listMK[4][0].selesai.j - 1, 100);
-      jadwalNextK.innerHTML = "Pulang";
-    } else if (
-      listMK[4][0].selesai.j == jam &&
-      menit < listMK[4][0].selesai.m
-    ) {
+      jadwalNextK.innerHTML = "Istirahat";
+    } else if (listMK[4][0].selesai.j == jam && menit < listMK[4][0].selesai.m) {
       adaMK(listMK[4][0]);
       hitungMundur(0, listMK[4][0].selesai.j, listMK[4][0].selesai.m);
+      jadwalNextK.innerHTML = "Istirahat";
+    } else if (listMK[4][1].mulai.j == jam && menit >= listMK[4][1].mulai.m) {
+      jadwalK.innerHTML = "Istirahat";
+      hitungMundur(0, 12, 90);
+      adaMKNext(listMK[4][2]);
+    } else if (listMK[4][2].mulai.j >= jam && menit < listMK[4][2].mulai.m) {
+      jadwalK.innerHTML = "Istirahat";
+      hitungMundur(0, 13, 30);
+      adaMKNext(listMK[4][2]);
+    } else if (listMK[4][2].mulai.j > jam && menit >= listMK[4][2].mulai.m) {
+      jadwalK.innerHTML = "Istirahat";
+      hitungMundur(0, 13, 00);
+      adaMKNext(listMK[4][2]);
+    } else if (listMK[4][2].mulai.j == jam && menit >= listMK[4][2].mulai.m) {
+      adaMK(listMK[4][2]);
+      hitungMundur(0, listMK[4][2].selesai.j, 0);
+      jadwalNextK.innerHTML = "Pulang";
+    } else if (listMK[4][2].mulai.j < jam && jam < listMK[4][2].selesai.j) {
+      adaMK(listMK[4][2]);
+      hitungMundur(0, listMK[4][2].selesai.j, 0);
       jadwalNextK.innerHTML = "Pulang";
     } else {
       jadwalK.innerHTML = "Pulang";
@@ -305,11 +330,7 @@ function updateJadwal() {
       adaMKNext(listMK[5][0]);
     } else if (listMK[5][0].mulai.j <= jam && jam < listMK[5][0].selesai.j) {
       adaMK(listMK[5][0]);
-      hitungMundur(0, listMK[5][1].mulai.j, listMK[5][1].mulai.m);
-      adaMKNext(listMK[5][1]);
-    } else if (listMK[5][1].mulai.j <= jam && jam < listMK[5][1].selesai.j) {
-      adaMK(listMK[5][1]);
-      hitungMundur(0, listMK[5][1].selesai.j, listMK[5][1].selesai.m);
+      hitungMundur(0, listMK[5][0].selesai.j, listMK[5][0].selesai.m);
       jadwalNextK.innerHTML = "Pulang";
     } else {
       jadwalK.innerHTML = "Pulang";
