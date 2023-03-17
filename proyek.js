@@ -168,7 +168,7 @@ const listMK = {
       },
       MK: "Pemrograman Aplikasi",
       dosen: "Sudarmaji, S.Kom., M.MKom.",
-      ruang: "Lab 3",
+      ruang: "Lab 1",
     },
   },
   5: {
